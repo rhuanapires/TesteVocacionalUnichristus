@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   main: {
-    backgroundColor: "#fff",
     paddingTop: 40
   },
   profileInfo: {
@@ -13,37 +12,92 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around"
   },
+  image: {
+    width: 150,
+    height: 150,
+    borderRadius: 100,
+    borderColor: "#FFF",
+    borderWidth: 5
+  },
+  imageView: {
+    shadowColor: "#000",
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+    shadowOffset: {
+      width: 3,
+      height: 3
+    },
+    alignItems: "center",
+    justifyContent: "center"
+  },
   buttonLogout: {
     flexDirection: "row",
-    backgroundColor: "red",
+    backgroundColor: "#2D97C7",
     borderRadius: 30,
     flex: 1,
     marginLeft: 10,
     marginRight: 20,
     padding: 5,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    shadowColor: "#000",
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    shadowOffset: {
+      width: 3,
+      height: 3
+    }
   },
   buttonEdit: {
     flexDirection: "row",
-    backgroundColor: "blue",
+    backgroundColor: "#FFF",
     borderRadius: 30,
     flex: 1,
     marginRight: 10,
     marginLeft: 20,
     padding: 5,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    shadowColor: "#000",
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    shadowOffset: {
+      width: 3,
+      height: 3
+    }
+  },
+  textButtonLogout: {
+    textAlignVertical: "center",
+    marginLeft: 5,
+    color: "#ffffff"
   },
   textButton: {
-    fontSize: 14,
     textAlignVertical: "center",
-    marginLeft: 5
+    marginLeft: 5,
+    color: "#19bef2"
   },
   textProfile: {
     fontSize: 16,
     fontWeight: "bold",
-    paddingTop: 5
+    color: "#FFF",
+    shadowColor: "#000",
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    paddingTop: 5,
+    paddingBottom: 15,
+    shadowOffset: {
+      width: 3,
+      height: 3
+    }
+  },
+  shadowProfile: {
+    opacity: 0.7
+  },
+  iconsEdit: {
+    color: "#19bef2"
+  },
+  iconLogout: {
+    color: "#ffffff"
   }
 });
 

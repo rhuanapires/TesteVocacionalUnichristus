@@ -1,13 +1,21 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import styles from "./style";
-import { Thumbnail, Icon } from "native-base";
+import { Icon } from "native-base";
+
+const shadowProfile = require("./../../../img/shadowProfile.png");
 
 export default class Profile extends Component {
   renderInfo() {
     return (
       <View style={styles.profileInfo}>
-        <Thumbnail source={require("../../../img/profile.jpeg")} />
+        <View style={styles.imageView}>
+          <Image
+            style={styles.image}
+            source={require("../../../img/profile.jpeg")}
+          />
+        </View>
+        <Image source={shadowProfile} style={styles.shadowProfile} />
         <Text style={styles.textProfile}>Raimunda de Alcântara</Text>
       </View>
     );
@@ -16,8 +24,8 @@ export default class Profile extends Component {
   renderLogout() {
     return (
       <TouchableOpacity style={styles.buttonLogout}>
-        <Icon name="md-log-out" />
-        <Text style={styles.textButton}>Logout</Text>
+        <Icon name="md-log-out" style={styles.iconLogout} />
+        <Text style={styles.textButtonLogout}>Logout</Text>
       </TouchableOpacity>
     );
   }
@@ -25,7 +33,7 @@ export default class Profile extends Component {
   buttonEdit() {
     return (
       <TouchableOpacity style={styles.buttonEdit}>
-        <Icon name="md-log-out" />
+        <Icon name="md-create" style={styles.iconsEdit} />
         <Text style={styles.textButton}>Editar</Text>
       </TouchableOpacity>
     );

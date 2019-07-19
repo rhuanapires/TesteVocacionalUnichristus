@@ -1,15 +1,20 @@
 import React, { Component } from "react";
-import { Text, View, StatusBar } from "react-native";
+import { View, ImageBackground, StatusBar } from "react-native";
 import Profile from "./profile";
 import Menu from "./menu";
+import styles from "./style";
+
+const background = require("./../../img/bgMain.png");
 
 export default class Main extends Component {
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.main}>
         <StatusBar barStyle="light-content" backgroundColor="#fff" />
-        <Profile />
-        <Menu />
+        <ImageBackground source={background} style={styles.background}>
+          <Profile />
+          <Menu />
+        </ImageBackground>
       </View>
     );
   }

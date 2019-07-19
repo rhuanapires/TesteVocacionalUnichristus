@@ -1,12 +1,15 @@
 import React, { Component } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { View, Image, TouchableOpacity } from "react-native";
 import styles from "./style";
 
 export default class Menu extends Component {
   iniciarTeste() {
     return (
       <TouchableOpacity style={styles.button}>
-        <Text>Iniciar Teste</Text>
+        <Image
+          source={require("../../../img/buttons/iniciarteste.png")}
+          style={styles.imageButton}
+        />
       </TouchableOpacity>
     );
   }
@@ -14,7 +17,10 @@ export default class Menu extends Component {
   secondButton() {
     return (
       <TouchableOpacity style={styles.button}>
-        <Text>Histórico de Resultados</Text>
+        <Image
+          source={require("../../../img/buttons/meusresultados.png")}
+          style={styles.imageButton}
+        />
       </TouchableOpacity>
     );
   }
@@ -22,7 +28,10 @@ export default class Menu extends Component {
   thirdButton() {
     return (
       <TouchableOpacity style={styles.button}>
-        <Text>Só deus</Text>
+        <Image
+          source={require("../../../img/buttons/cursos.png")}
+          style={styles.imageButton}
+        />
       </TouchableOpacity>
     );
   }
@@ -30,7 +39,10 @@ export default class Menu extends Component {
   fourthButton() {
     return (
       <TouchableOpacity style={styles.button}>
-        <Text>Mordekaiser</Text>
+        <Image
+          source={require("../../../img/buttons/corte.png")}
+          style={styles.imageButton}
+        />
       </TouchableOpacity>
     );
   }
@@ -38,6 +50,10 @@ export default class Menu extends Component {
   render() {
     return (
       <View style={styles.main}>
+        <Image
+          source={require("../../../img/buttons/menu.png")}
+          style={styles.viewTitulo}
+        />
         <View style={styles.viewButton}>
           {this.iniciarTeste()}
           {this.secondButton()}
