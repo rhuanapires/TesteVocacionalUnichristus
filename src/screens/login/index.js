@@ -9,6 +9,8 @@ import {
   ImageBackground,
   StatusBar
 } from "react-native";
+import { Actions } from "react-native-router-flux";
+import firebase from "react-native-firebase";
 
 // Variaveis com as imagens utilizadas na View
 const logo = require("../../img/icon.png");
@@ -29,12 +31,41 @@ export default class Login extends Component {
     });
   }
 
+  componentDidMount() {
+    console.log("teste");
+    firebase
+      .auth()
+      .signInAnonymously()
+      .then(credential => {
+        if (credential) {
+          console.log("default app user ->", credential.user.toJSON());
+        }
+      })
+      .catch(error => {
+        console.log(JSON.stringify(error));
+      });
+  }
+
+  auth() {
+    const { login, senha } = this.state;
+
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(login, senha)
+      .then(credential => {
+        console.log(JSON.stringify(credential));
+        if (credential) {
+          this.onPressEntrar();
+        }
+      })
+      .catch(error => {
+        alert(error);
+      });
+  }
+
   renderButtonLogin() {
     return (
-      <TouchableOpacity
-        style={style.buttonLogin}
-        onPress={() => this.onPressEntrar()}
-      >
+      <TouchableOpacity style={style.buttonLogin} onPress={() => this.auth()}>
         <Text style={style.textButton}>Entrar</Text>
       </TouchableOpacity>
     );
@@ -51,7 +82,7 @@ export default class Login extends Component {
     return (
       <View style={style.viewAlinhar}>
         <Text style={style.text}>Novo usuário? </Text>
-        <TouchableOpacity onPress={() => this.onPressNewAccount()}>
+        <TouchableOpacity onPress={this.onPressNewAccount}>
           <Text style={style.textButtonNewAccount}>Criar nova Conta</Text>
         </TouchableOpacity>
       </View>
@@ -60,15 +91,18 @@ export default class Login extends Component {
 
   onPressEntrar() {
     console.log("Entrou");
+    Actions.main();
   }
 
   onPressSenha() {
     console.log("Página de esqueceu a senha");
   }
 
-  onPressNewAccount() {
+  onPressNewAccount = () => {
     console.log("Página de cadastro de novo user");
-  }
+    Actions.newUser();
+  };
+
   renderLogin() {
     return (
       <View style={style.viewAlinhar}>

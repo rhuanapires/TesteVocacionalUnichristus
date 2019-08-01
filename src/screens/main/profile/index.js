@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import styles from "./style";
 import { Icon } from "native-base";
+import { Actions } from "react-native-router-flux";
+import firebase from "react-native-firebase";
 
 const shadowProfile = require("./../../../img/shadowProfile.png");
 
@@ -23,12 +25,17 @@ export default class Profile extends Component {
 
   renderLogout() {
     return (
-      <TouchableOpacity style={styles.buttonLogout}>
+      <TouchableOpacity style={styles.buttonLogout} onPress={this.logout}>
         <Icon name="md-log-out" style={styles.iconLogout} />
         <Text style={styles.textButtonLogout}>Logout</Text>
       </TouchableOpacity>
     );
   }
+
+  logout = () => {
+    firebase.auth().signOut();
+    Actions.pop();
+  };
 
   buttonEdit() {
     return (

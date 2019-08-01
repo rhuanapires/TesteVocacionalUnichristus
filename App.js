@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-// import Login from "./src/screens/login";
-import Main from "./src/screens/main";
+import Routes from "./src/utils/routes/Routes";
 
 export default class App extends Component {
   render() {
-    return <Main />;
+    return <Routes />;
   }
 }

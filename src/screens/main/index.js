@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, ImageBackground, StatusBar } from "react-native";
+import { View, ImageBackground, StatusBar, ScrollView } from "react-native";
 import Profile from "./profile";
 import Menu from "./menu";
 import styles from "./style";
@@ -12,8 +12,10 @@ export default class Main extends Component {
       <View style={styles.main}>
         <StatusBar barStyle="light-content" backgroundColor="#fff" />
         <ImageBackground source={background} style={styles.background}>
-          <Profile />
-          <Menu />
+          <ScrollView style={{ flex: 1 }}>
+            <Profile />
+            <Menu />
+          </ScrollView>
         </ImageBackground>
       </View>
     );
