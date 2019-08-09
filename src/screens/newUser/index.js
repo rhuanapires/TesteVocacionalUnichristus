@@ -5,11 +5,12 @@ import {
   TextInput,
   TouchableOpacity,
   ImageBackground,
-  ScrollView
+  ScrollView,
+  Alert
 } from "react-native";
 import React, { Component } from "react";
 import styles from "./style";
-import { Icon, Picker, PickerItem } from "native-base";
+import { Icon } from "native-base";
 import ReactNativePickerModule from "react-native-picker-module";
 import { Actions } from "react-native-router-flux";
 
@@ -60,25 +61,33 @@ export default class NewUser extends Component {
       "Sergipe",
       "Tocantins",
       "Não Resido no Brasil"
-    ]
+    ],
+
+    nomeCompleto: "",
+    idade: "",
+    eMail: "",
+    senha: "",
+    confirmaSenha: ""
   };
 
-  //   state = {
-  //     login: "",
-  //     senha: ""
-  //   };
-  //   handlerInput(state, value) {
-  //     console.log(state, value);
-  //     this.setState({
-  //       [state]: value
-  //     });
-  //   }
+  handlerInput(state, value) {
+    console.log(state, value);
+    this.setState({
+      [state]: value
+    });
+  }
 
   recebeNome() {
     return (
       <View>
         <Text style={styles.text}>Nome Completo</Text>
-        <TextInput style={styles.textInput} />
+        <TextInput
+          style={styles.textInput}
+          value={this.state.nomeCompleto}
+          onChangeText={novoNome => {
+            this.handlerInput("nomeCompleto", novoNome);
+          }}
+        />
       </View>
     );
   }
@@ -152,7 +161,14 @@ export default class NewUser extends Component {
     return (
       <View>
         <Text style={styles.text}>Idade</Text>
-        <TextInput style={styles.textInput} />
+        <TextInput
+          style={styles.textInput}
+          value={this.state.idade}
+          keyboardType="decimal-pad"
+          onChangeText={novaIdade => {
+            this.handlerInput("idade", novaIdade.replace(".", ""));
+          }}
+        />
       </View>
     );
   }
@@ -160,7 +176,13 @@ export default class NewUser extends Component {
     return (
       <View>
         <Text style={styles.text}>E-mail</Text>
-        <TextInput style={styles.textInput} />
+        <TextInput
+          style={styles.textInput}
+          value={this.state.eMail}
+          onChangeText={novoEmail => {
+            this.handlerInput("eMail", novoEmail);
+          }}
+        />
       </View>
     );
   }
@@ -174,6 +196,10 @@ export default class NewUser extends Component {
         <View style={styles.alignButtons}>
           <TextInput
             style={styles.textInput}
+            value={this.state.senha}
+            onChangeText={novaSenha => {
+              this.handlerInput("senha", novaSenha);
+            }}
             secureTextEntry={this.state.ocultaSenha}
             textContentType={"password"}
           />
@@ -195,6 +221,10 @@ export default class NewUser extends Component {
         <View style={styles.alignButtons}>
           <TextInput
             style={styles.textInput}
+            value={this.state.ConfirmaSenha}
+            onChangeText={novaConfirmaSenha =>
+              this.handlerInput("confirmaSenha", novaConfirmaSenha)
+            }
             secureTextEntry={this.state.ocultaSenha2}
             textContentType={"password"}
           />
@@ -210,6 +240,100 @@ export default class NewUser extends Component {
     );
   }
 
+  confereDados = () => {
+    let erros = [];
+    var msgErro = "";
+
+    // Verifica nome vazio
+    if (!this.state.nomeCompleto) {
+      erros.push({
+        id: "nomeCompleto",
+        mensagem: "O nome precisa estar preenchido!"
+      });
+    }
+
+    // Verifica a escolaridade
+    if (this.state.selectedValue === "Selecione o grau de escolaridade") {
+      erros.push({
+        id: "escolaridade",
+        mensagem: "É necessário selecionar uma escolaridade"
+      });
+    }
+
+    // Verifica a idade
+    if (this.state.idade.length > 2 || this.state.idade <= 0) {
+      erros.push({
+        id: "idade",
+        mensagem: "Digite uma idade válida"
+      });
+    }
+
+    // Verifica o estado
+    if (
+      this.state.selectedValueUF === "Selecione o estado em que você reside"
+    ) {
+      erros.push({
+        id: "estado",
+        mensagem: "Selecione um estado válido"
+      });
+    }
+
+    // Verifica e-mail vazio, sem @ e sem .
+    if (
+      !this.state.eMail ||
+      !this.state.eMail.includes("@") ||
+      !this.state.eMail.includes(".") ||
+      this.state.eMail.indexOf("@") > this.state.eMail.lastIndexOf(".")
+    ) {
+      erros.push({
+        id: "e-mail",
+        mensagem: "O e-mail é inválido!"
+      });
+    }
+
+    // senha vazia e/ou inválida
+    if (
+      !this.state.senha ||
+      this.state.senha !== this.state.confirmaSenha ||
+      this.state.senha < 6
+    ) {
+      erros.push({
+        id: "senha",
+        mensagem: "A senha é inválida!"
+      });
+    }
+
+    // exibe erros
+    if (erros.length !== 0) {
+      erros.forEach(p => {
+        msgErro = msgErro + "\n" + p.mensagem;
+      });
+
+      Alert.alert(
+        "Erro ao criar a conta",
+        msgErro,
+        [
+          {
+            text: "OK, corrigir meus dados"
+          }
+        ],
+        { cancelable: false }
+      );
+    } else {
+      Alert.alert(
+        "Tudo certo!",
+        "Conta criada com sucesso!",
+        [
+          {
+            text: "Ok!",
+            onPress: () => Actions.pop()
+          }
+        ],
+        { cancelable: false }
+      );
+    }
+  };
+
   exibirPassword = () =>
     this.setState({ ocultaSenha: !this.state.ocultaSenha });
 
@@ -218,7 +342,7 @@ export default class NewUser extends Component {
 
   buttonCadastro() {
     return (
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={this.confereDados}>
         <Text style={styles.textButton}>Cadastrar</Text>
         <Icon name="ios-arrow-forward" style={styles.textButton} />
       </TouchableOpacity>
@@ -233,6 +357,7 @@ export default class NewUser extends Component {
       </TouchableOpacity>
     );
   }
+
   returnLogin = () => {
     Actions.pop();
     console.log("Retorna para a página inicial");
