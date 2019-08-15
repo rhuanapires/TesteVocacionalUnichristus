@@ -8,6 +8,9 @@ import firebase from "react-native-firebase";
 const shadowProfile = require("./../../../img/shadowProfile.png");
 
 export default class Profile extends Component {
+  state = {
+    user: ""
+  };
   renderInfo() {
     return (
       <View style={styles.profileInfo}>
@@ -18,10 +21,31 @@ export default class Profile extends Component {
           />
         </View>
         <Image source={shadowProfile} style={styles.shadowProfile} />
-        <Text style={styles.textProfile}>Raimunda de Alcântara</Text>
+        <Text style={styles.textProfile}>{this.state.user}</Text>
       </View>
     );
   }
+
+  async componentDidMount() {
+    const user = firebase.auth().currentUser;
+    console.log(JSON.stringify(user));
+    if (!user) {
+      return;
+    }
+    const nameUser = firebase
+      .firestore()
+      .collection("users")
+      .doc(user.email);
+
+    const username = await nameUser.get();
+    console.log(username.data());
+    console.log(username.data().nomeCompleto);
+    this.setUsername(username.data().nomeCompleto);
+  }
+
+  setUsername = username => {
+    this.setState({ user: username });
+  };
 
   renderLogout() {
     return (
@@ -39,12 +63,17 @@ export default class Profile extends Component {
 
   buttonEdit() {
     return (
-      <TouchableOpacity style={styles.buttonEdit}>
+      <TouchableOpacity style={styles.buttonEdit} onPress={this.edit}>
         <Icon name="md-create" style={styles.iconsEdit} />
         <Text style={styles.textButton}>Editar</Text>
       </TouchableOpacity>
     );
   }
+
+  edit() {
+    Actions.pop();
+  }
+
   render() {
     return (
       <View style={styles.main}>

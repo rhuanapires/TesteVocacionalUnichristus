@@ -31,21 +31,6 @@ export default class Login extends Component {
     });
   }
 
-  componentDidMount() {
-    console.log("teste");
-    firebase
-      .auth()
-      .signInAnonymously()
-      .then(credential => {
-        if (credential) {
-          console.log("default app user ->", credential.user.toJSON());
-        }
-      })
-      .catch(error => {
-        console.log(JSON.stringify(error));
-      });
-  }
-
   auth() {
     const { login, senha } = this.state;
 

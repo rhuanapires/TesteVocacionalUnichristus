@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { View, Image, TouchableOpacity } from "react-native";
 import styles from "./style";
+import { Actions } from "react-native-router-flux";
 
 export default class Menu extends Component {
   iniciarTeste() {
     return (
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={this.teste}>
         <Image
           source={require("../../../img/buttons/iniciarteste.png")}
           style={styles.imageButton}
@@ -14,6 +15,9 @@ export default class Menu extends Component {
     );
   }
 
+  teste() {
+    Actions.questao01();
+  }
   secondButton() {
     return (
       <TouchableOpacity style={styles.button}>

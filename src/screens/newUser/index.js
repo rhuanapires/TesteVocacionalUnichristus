@@ -13,12 +13,13 @@ import styles from "./style";
 import { Icon } from "native-base";
 import ReactNativePickerModule from "react-native-picker-module";
 import { Actions } from "react-native-router-flux";
+import firebase from "react-native-firebase";
 
 const Menu = require("../../img/titles/newuser.png");
 const Clip = require("../../img/clip.png");
 const background = require("../../img/bgMain.png");
 
-export default class NewUser extends Component {
+export default class Questao01 extends Component {
   state = {
     ocultaSenha: "true",
     ocultaSenha2: "true",
@@ -177,6 +178,8 @@ export default class NewUser extends Component {
       <View>
         <Text style={styles.text}>E-mail</Text>
         <TextInput
+          keyboardType={"email-address"}
+          autoCapitalize="none"
           style={styles.textInput}
           value={this.state.eMail}
           onChangeText={novoEmail => {
@@ -320,19 +323,51 @@ export default class NewUser extends Component {
         { cancelable: false }
       );
     } else {
-      Alert.alert(
-        "Tudo certo!",
-        "Conta criada com sucesso!",
-        [
+      this.saveLogin();
+    }
+  };
+
+  saveLogin() {
+    const { eMail, senha } = this.state;
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(eMail, senha)
+      .then(credential => {
+        this.saveUser();
+      })
+      .catch(error => {
+        console.log(JSON.stringify(error));
+        Alert.alert("Erro!", error.userInfo.NSLocalizedDescription, [
+          {
+            text: "Ok! Corrigir os dados"
+          }
+        ]);
+      });
+  }
+
+  saveUser() {
+    const users = firebase
+      .firestore()
+      .collection("users")
+      .doc(this.state.eMail);
+    users
+      .set({
+        nomeCompleto: this.state.nomeCompleto,
+        idade: this.state.idade,
+        eMail: this.state.eMail,
+        escolaridade: this.state.selectedValue,
+        uf: this.state.selectedValueUF
+      })
+      .then(result =>
+        Alert.alert("Tudo certo!", "Conta criada com sucesso!", [
           {
             text: "Ok!",
             onPress: () => Actions.pop()
           }
-        ],
-        { cancelable: false }
-      );
-    }
-  };
+        ])
+      )
+      .catch(error => alert(JSON.stringify(error)));
+  }
 
   exibirPassword = () =>
     this.setState({ ocultaSenha: !this.state.ocultaSenha });
