@@ -38,9 +38,7 @@ export default class Questao03 extends Component {
     return (
       <View>
         <Text style={styles.text}>Selecione suas áreas favoritas</Text>
-        <Text style={styles.subtext}>
-          Selecione o mínimo de uma opção e máximo de 3 opções
-        </Text>
+        <Text style={styles.subtext}>Escolha até 5 opções</Text>
       </View>
     );
   }

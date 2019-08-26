@@ -15,7 +15,7 @@ export default class Resultado extends Component {
     const { markedItems } = this.props;
     const exibeItems = JSON.stringify(markedItems);
     console.log(exibeItems.title);
-    return exibeItems;
+    return <Text style={styles.text}>{exibeItems}</Text>;
   }
   render() {
     return (
@@ -27,10 +27,10 @@ export default class Resultado extends Component {
         <ScrollView style={styles.ScrollV}>
           <View style={styles.subHeader}>
             <Image source={Clip} style={styles.clip} resizeMode="contain" />
-            <Text style={styles.textRadioButtons}>{this.exibeTexto()}</Text>
+            {this.exibeTexto()}
           </View>
           <View style={styles.subHeader2}>
-            <Text style={styles.textRadioButtons}>Cursos Sugeridos</Text>
+            <Text style={styles.textSubtitles}>Cursos Sugeridos</Text>
           </View>
         </ScrollView>
       </ImageBackground>

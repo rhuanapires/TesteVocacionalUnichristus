@@ -37,9 +37,7 @@ export default class Questao01 extends Component {
         <Text style={styles.text}>
           Selecione os ambientes de trabalho favoritos
         </Text>
-        <Text style={styles.subtext}>
-          Mínimo de uma opção e máximo de 5 opções
-        </Text>
+        <Text style={styles.subtext}>Escolha até 5 opções</Text>
       </View>
     );
   }

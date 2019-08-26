@@ -40,9 +40,7 @@ export default class Questao02 extends Component {
         <Text style={styles.text}>
           Dentre as atividades abaixo, selecione as de seu interesse
         </Text>
-        <Text style={styles.subtext}>
-          Mínimo de uma opção e máximo de 5 opções
-        </Text>
+        <Text style={styles.subtext}>Escolha até 3 opções</Text>
       </View>
     );
   }
@@ -83,10 +81,10 @@ export default class Questao02 extends Component {
           item.checked = !item.checked;
         } else {
           let marcados = listItems.filter(p => p.checked);
-          if (marcados.length >= 5) {
+          if (marcados.length >= 3) {
             Alert.alert(
               "Erro",
-              "Deve-se selecionar até 5 opções",
+              "Deve-se selecionar até 3 opções",
               [
                 {
                   text: "OK, entendi!"
