@@ -5,16 +5,19 @@ const { width, height } = Dimensions.get("screen");
 const styles = StyleSheet.create({
   background: {
     backgroundColor: "#ffffff",
-    flex: 1,
     width: width,
-    height: height
+    height: height,
+    marginBottom: 50
   },
   ScrollV: {
     flex: 1,
+    backgroundColor: "#ffffff"
+  },
+  unify: {
+    marginTop: 250,
     paddingHorizontal: 20
   },
   subHeader: {
-    marginTop: 110,
     borderRadius: 30,
     marginHorizontal: 0,
     paddingHorizontal: 15,
@@ -91,10 +94,16 @@ const styles = StyleSheet.create({
     textAlign: "justify"
   },
   image: {
-    marginVertical: 10,
-    marginHorizontal: 10,
-    height: 30,
-    width: 50
+    marginTop: 10,
+    height: 60,
+    alignContent: "center",
+    width: 340
+  },
+  cursos: {
+    left: -5,
+    height: 40,
+    alignContent: "center",
+    width: 110
   },
   button: {
     flex: 1,

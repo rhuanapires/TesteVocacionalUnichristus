@@ -3,7 +3,7 @@ import { StyleSheet, Dimensions } from "react-native";
 const { width, height } = Dimensions.get("window");
 const style = StyleSheet.create({
   bg: {
-    backgroundColor: "#e3e7e7",
+    backgroundColor: "#ffffff",
     flex: 1,
     width: width,
     height: height,

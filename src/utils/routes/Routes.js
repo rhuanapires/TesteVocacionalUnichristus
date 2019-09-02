@@ -28,12 +28,7 @@ const Routes = () => (
       <Scene key="questao02" component={Questao02} title="Questão 2" />
       <Scene key="questao03" component={Questao03} title="Questão 3" />
       <Scene key="questao04" component={Questao04} title="Questão 4" />
-      <Scene
-        navTransparent="true"
-        key="resultado"
-        component={Resultado}
-        title="Resultado"
-      />
+      <Scene key="resultado" navTransparent component={Resultado} />
       {/* <Scene
         key="cadastro"
         component={Cadastro}
