@@ -11,10 +11,10 @@ const styles = StyleSheet.create({
   },
   ScrollV: {
     flex: 1,
-    backgroundColor: "#ffffff"
+    marginTop: 90
   },
   unify: {
-    marginTop: 250,
+    marginTop: 150,
     paddingHorizontal: 20
   },
   subHeader: {
@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
     shadowOffset: {
       height: 2,
       width: 3
-    }
+    },
+    elevation: 10
   },
   subHeader2: {
     marginTop: 30,
@@ -45,7 +46,8 @@ const styles = StyleSheet.create({
     shadowOffset: {
       height: 2,
       width: 3
-    }
+    },
+    elevation: 10
   },
   clip: {
     width: 40,
@@ -60,6 +62,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#19BEF2",
+    textAlign: "justify",
     marginVertical: 10,
     marginHorizontal: 10,
     shadowColor: "#000000",
@@ -68,7 +71,8 @@ const styles = StyleSheet.create({
     shadowOffset: {
       height: 2,
       width: 3
-    }
+    },
+    elevation: 10
   },
   textSubtitles: {
     fontSize: 14,
@@ -84,7 +88,8 @@ const styles = StyleSheet.create({
     shadowOffset: {
       height: 2,
       width: 3
-    }
+    },
+    elevation: 10
   },
   subtext: {
     marginHorizontal: 10,
@@ -123,7 +128,8 @@ const styles = StyleSheet.create({
     shadowOffset: {
       width: 3,
       height: 3
-    }
+    },
+    elevation: 10
   },
   textButton: {
     color: "#FFFFFF",
@@ -148,7 +154,8 @@ const styles = StyleSheet.create({
     shadowOffset: {
       width: 3,
       height: 3
-    }
+    },
+    elevation: 10
   },
   textButtonBack: {
     color: "#1397BF",
@@ -159,6 +166,18 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     flexDirection: "row",
     marginBottom: 30
+  },
+  footer: {
+    marginBottom: 30
+  },
+  listaItems: {
+    color: "#19BEF2",
+    fontSize: 6,
+    alignSelf: "center",
+    marginHorizontal: 10
+  },
+  alignLista: {
+    flexDirection: "row"
   }
 });
 

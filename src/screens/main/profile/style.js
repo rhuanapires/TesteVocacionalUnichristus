@@ -46,7 +46,8 @@ const styles = StyleSheet.create({
     shadowOffset: {
       width: 3,
       height: 3
-    }
+    },
+    elevation: 10
   },
   buttonEdit: {
     flexDirection: "row",
@@ -64,7 +65,8 @@ const styles = StyleSheet.create({
     shadowOffset: {
       width: 3,
       height: 3
-    }
+    },
+    elevation: 10
   },
   textButtonLogout: {
     textAlignVertical: "center",
@@ -88,7 +90,8 @@ const styles = StyleSheet.create({
     shadowOffset: {
       width: 3,
       height: 3
-    }
+    },
+    elevation: 10
   },
   shadowProfile: {
     opacity: 0.7

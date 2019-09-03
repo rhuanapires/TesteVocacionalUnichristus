@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
     shadowOffset: {
       height: 2,
       width: 3
-    }
+    },
+    elevation: 10
   },
   clip: {
     width: 40,
@@ -50,7 +51,8 @@ const styles = StyleSheet.create({
     shadowOffset: {
       height: 2,
       width: 3
-    }
+    },
+    elevation: 10
   },
   text: {
     fontSize: 14,
@@ -66,7 +68,8 @@ const styles = StyleSheet.create({
     shadowOffset: {
       height: 2,
       width: 3
-    }
+    },
+    elevation: 10
   },
   subtext: {
     marginHorizontal: 10,
@@ -99,7 +102,8 @@ const styles = StyleSheet.create({
     shadowOffset: {
       width: 3,
       height: 3
-    }
+    },
+    elevation: 10
   },
   textButton: {
     color: "#FFFFFF",
@@ -124,7 +128,8 @@ const styles = StyleSheet.create({
     shadowOffset: {
       width: 3,
       height: 3
-    }
+    },
+    elevation: 10
   },
   textButtonBack: {
     color: "#1397BF",

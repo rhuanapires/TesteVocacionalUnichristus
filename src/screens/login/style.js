@@ -54,7 +54,8 @@ const style = StyleSheet.create({
     shadowOffset: {
       height: 6,
       width: 3
-    }
+    },
+    elevation: 10
   },
   buttonLogin: {
     borderRadius: 30,
@@ -73,7 +74,8 @@ const style = StyleSheet.create({
     shadowOffset: {
       height: 6,
       width: 3
-    }
+    },
+    elevation: 10
   },
   text: {
     fontSize: 14,

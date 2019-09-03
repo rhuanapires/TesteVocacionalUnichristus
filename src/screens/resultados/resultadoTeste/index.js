@@ -1,7 +1,21 @@
 import React, { Component } from "react";
-import { Text, View, ImageBackground, ScrollView, Image } from "react-native";
+import {
+  Text,
+  View,
+  ImageBackground,
+  ScrollView,
+  Image,
+  FlatList,
+  ActivityIndicator
+} from "react-native";
 import styles from "./style";
-import { ActivityIndicator } from "react-native-paper";
+import {
+  cursossaude,
+  cursoscsociais,
+  cursosexatas,
+  cursoschumanas
+} from "./description";
+import { Icon } from "native-base";
 
 const Clip = require("../../../img/clip.png");
 const cursos = require("../../../img/titles/cursos.png");
@@ -14,7 +28,13 @@ export default class Resultado extends Component {
   state = {
     loading: true,
     background: undefined,
-    title: undefined
+    title: undefined,
+    description: "",
+    courses: "",
+    exatas: cursosexatas,
+    saude: cursossaude,
+    csociais: cursoscsociais,
+    chumanas: cursoschumanas
   };
 
   componentDidMount() {
@@ -91,40 +111,79 @@ export default class Resultado extends Component {
   }
 
   retornaExatas() {
+    const { exatas } = this.state;
+
     this.setState({
       background: require("../../../img/results/exatas.png"),
       title: require("../../../img/titles/exatas.png"),
-      loading: false
+      loading: false,
+      description:
+        "Ciências Exatas são as ciências que têm a Matemática, a Química e a Física como peças fundamentais dos seus estudos.Além das 3 áreas básicas e todas as suas subdivisões, tais como Física Quântica e Físico-Química, entre as ciências que também são consideradas exatas temos: Astronomia, Estatística, Ciência da Computação e Arquitetura. A principal característica das carreiras e dos profissionais da área de exatas é o Raciocínio Lógico.",
+      courses: exatas
     });
   }
 
   retornaCSociais() {
+    const { csociais } = this.state;
+
     this.setState({
       background: require("../../../img/results/csociais.png"),
       title: require("../../../img/titles/csociais.png"),
-      loading: false
+      loading: false,
+      description:
+        "A área de Ciências Sociais Aplicadas reúne campos de conhecimento interdisciplinares, voltados para os aspectos sociais das diversas realidades humanas.",
+      courses: csociais
     });
   }
 
   retornaSaude() {
+    const { saude } = this.state;
+
     this.setState({
       background: require("../../../img/results/saude.png"),
       title: require("../../../img/titles/saude.png"),
-      loading: false
+      loading: false,
+      description:
+        "As ciências da saúde ou ciências médicas são as áreas de estudo relacionadas com a vida, a saúde e a doença. Geralmente os estudantes que tendem a fazer vestibular nessa área possuem aptidão com as disciplinas de química e biologia.",
+      courses: saude
     });
   }
   retornaCHumanas() {
+    const { chumanas } = this.state;
     this.setState({
       background: require("../../../img/results/chumanas.png"),
       title: require("../../../img/titles/chumanas.png"),
-      loading: false
+      loading: false,
+      description:
+        "Ciências Humanas são as ciências que tratam do aspecto humano do homem. Relacionadas a arte, beleza, filosofia e comunicação. A expressão Ciências Humanas em si refere-se somente àquelas ciências que têm o ser humano como seu objeto de estudo ou foco.",
+      courses: chumanas
     });
   }
+  renderListCursos() {
+    const { courses } = this.state;
 
+    console.log(courses);
+
+    return (
+      <FlatList
+        data={courses}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item }) => this.renderItemCurso(item)}
+      />
+    );
+  }
+
+  renderItemCurso(item) {
+    return (
+      <View style={styles.alignLista}>
+        <Icon name="circle" type="FontAwesome" style={styles.listaItems} />
+        <Text style={styles.text}>{item}</Text>
+      </View>
+    );
+  }
   exibeTexto() {
-    const { markedItems } = this.props;
-    const exibeItems = JSON.stringify(markedItems);
-    return <Text style={styles.text}>{exibeItems}</Text>;
+    const { description } = this.state;
+    return <Text style={styles.text}>{description}</Text>;
   }
   render() {
     const { loading } = this.state;
@@ -132,12 +191,12 @@ export default class Resultado extends Component {
       return <ActivityIndicator />;
     } else {
       return (
-        <ScrollView style={styles.ScrollV}>
-          <ImageBackground
-            style={styles.background}
-            resizeMode="stretch"
-            source={this.state.background}
-          >
+        <ImageBackground
+          style={styles.background}
+          resizeMode="contain"
+          source={this.state.background}
+        >
+          <ScrollView style={styles.ScrollV}>
             <View style={styles.unify}>
               <Image source={this.state.title} style={styles.image} />
               <View style={styles.subHeader}>
@@ -146,11 +205,12 @@ export default class Resultado extends Component {
               </View>
               <View style={styles.subHeader2}>
                 <Image source={cursos} style={styles.cursos} />
-                <Text style={styles.text}>Engenharias</Text>
+                {this.renderListCursos()}
               </View>
             </View>
-          </ImageBackground>
-        </ScrollView>
+            <View style={styles.footer} />
+          </ScrollView>
+        </ImageBackground>
       );
     }
   }
