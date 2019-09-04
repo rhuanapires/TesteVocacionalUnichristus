@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "688815065114",
+    "firebase_url": "https://testevocacional-86946.firebaseio.com",
+    "project_id": "testevocacional-86946",
+    "storage_bucket": "testevocacional-86946.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:688815065114:android:0cedeedcf9c76d80",
+        "android_client_info": {
+          "package_name": "testevocacional.unichristus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "688815065114-dh97h2fvkkk3jhcbr4u3v5tl03rtmf9c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-TtxpY874sPyADVJJ_qQC_JF3kf9OGEg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "688815065114-dh97h2fvkkk3jhcbr4u3v5tl03rtmf9c.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "688815065114-quq1l3qhu4smdspb53hgnktkjm0i9c5h.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "testevocacional.unichristus"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

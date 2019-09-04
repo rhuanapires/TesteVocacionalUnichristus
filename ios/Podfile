@@ -36,7 +36,6 @@ target 'APP' do
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
 
-  pod 'RNFirebase', :path => '../node_modules/react-native-firebase/ios'
 
   target 'APPTests' do
     inherit! :search_paths
