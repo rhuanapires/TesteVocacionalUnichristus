@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet, Dimensions, Platform } from "react-native";
 
 const { width, height } = Dimensions.get("window");
 const style = StyleSheet.create({
@@ -44,6 +44,11 @@ const style = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#ffffff",
     borderColor: "#002e61",
+    ...Platform.select({
+      android: {
+        height: 40
+      }
+    }),
     opacity: 0.9,
     borderRadius: 70,
     paddingHorizontal: 15,

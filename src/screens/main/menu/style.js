@@ -30,6 +30,9 @@ const styles = StyleSheet.create({
       height: 3
     },
     elevation: 10
+  },
+  viewFooter: {
+    marginBottom: 30
   }
 });
 

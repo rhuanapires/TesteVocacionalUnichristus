@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet, Dimensions, Platform } from "react-native";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -29,7 +29,15 @@ const styles = StyleSheet.create({
       height: 2,
       width: 3
     },
-    elevation: 10
+    elevation: 10,
+    ...Platform.select({
+      android: {
+        textShadowColor: "#00000040",
+        textShadowOffset: { width: 3, height: 2 },
+        textShadowRadius: 20,
+        elevation: 10
+      }
+    })
   },
   clip: {
     width: 40,
@@ -43,8 +51,8 @@ const styles = StyleSheet.create({
     textAlign: "left",
     color: "#19BEF2",
     borderRadius: 50,
-    borderColor: "#19BEF2",
-    borderBottomWidth: 2
+    borderColor: "#19BEF2"
+    // borderBottomWidth: 2
     // paddingBottom: 10,
     // paddingVertical: 5,
     // marginVertical: 10,
@@ -64,7 +72,14 @@ const styles = StyleSheet.create({
       height: 2,
       width: 3
     },
-    elevation: 10
+    ...Platform.select({
+      android: {
+        textShadowColor: "#00000040",
+        textShadowOffset: { width: 3, height: 2 },
+        textShadowRadius: 20,
+        elevation: 10
+      }
+    })
   },
   subtext: {
     marginHorizontal: 10,
@@ -82,14 +97,13 @@ const styles = StyleSheet.create({
   textInput: {
     flex: 1,
     justifyContent: "center",
-    marginHorizontal: 0,
     // backgroundColor: "#EAEAEA",
     color: "#19BEF2",
     borderRadius: 50,
     borderColor: "#19BEF2",
     borderBottomWidth: 2,
     //opacity: 0.9,
-    paddingHorizontal: 10,
+    paddingHorizontal: Platform.OS === "android" ? 20 : 10,
     paddingBottom: 10,
     paddingVertical: 5,
     marginVertical: 5,
@@ -101,7 +115,13 @@ const styles = StyleSheet.create({
       height: 6,
       width: 3
     },
-    elevation: 10
+    ...Platform.select({
+      android: {
+        textShadowColor: "#00000040",
+        textShadowOffset: { width: 3, height: 2 },
+        textShadowRadius: 20
+      }
+    })
   },
   button: {
     flex: 1,
@@ -182,6 +202,9 @@ const styles = StyleSheet.create({
   alignButtons: {
     justifyContent: "space-around",
     flexDirection: "row"
+  },
+  viewFooter: {
+    marginBottom: 30
   }
 });
 

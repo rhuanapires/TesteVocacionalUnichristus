@@ -1,8 +1,8 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 
 const styles = StyleSheet.create({
   main: {
-    paddingTop: 40
+    paddingTop: Platform.OS === "android" ? 20 : 40
   },
   profileInfo: {
     padding: 15,
@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
       width: 3,
       height: 3
     },
+    elevation: 5,
     alignItems: "center",
     justifyContent: "center"
   },
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
     color: "#19bef2"
   },
   textProfile: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "bold",
     color: "#FFF",
     shadowColor: "#000",
@@ -91,7 +92,14 @@ const styles = StyleSheet.create({
       width: 3,
       height: 3
     },
-    elevation: 10
+    ...Platform.select({
+      android: {
+        textShadowColor: "#00000040",
+        textShadowOffset: { width: 3, height: 2 },
+        textShadowRadius: 20,
+        elevation: 10
+      }
+    })
   },
   shadowProfile: {
     opacity: 0.7

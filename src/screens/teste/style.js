@@ -52,7 +52,10 @@ const styles = StyleSheet.create({
       height: 2,
       width: 3
     },
-    elevation: 10
+    elevation: 10,
+    textShadowColor: "#00000040",
+    textShadowOffset: { width: 3, height: 2 },
+    textShadowRadius: 20
   },
   text: {
     fontSize: 14,
@@ -69,7 +72,10 @@ const styles = StyleSheet.create({
       height: 2,
       width: 3
     },
-    elevation: 10
+    elevation: 10,
+    textShadowColor: "#00000040",
+    textShadowOffset: { width: 3, height: 2 },
+    textShadowRadius: 20
   },
   subtext: {
     marginHorizontal: 10,

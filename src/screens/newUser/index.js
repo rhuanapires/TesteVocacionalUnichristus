@@ -21,17 +21,18 @@ const background = require("../../img/bgMain.png");
 
 export default class Questao01 extends Component {
   state = {
-    ocultaSenha: "true",
-    ocultaSenha2: "true",
+    ocultaSenha: true,
+    ocultaSenha2: true,
     selectedValue: "Selecione o grau de escolaridade",
-    data: [
-      "Ensino Fundamental Completo",
-      "Ensino Médio Incompleto",
-      "Ensino Médio Completo",
-      "Ensino Superior Incompleto",
-      "Ensino Superior Completo",
+    escolaridade: [
+      "Fundamental Completo",
+      "Médio Incompleto",
+      "Médio Completo",
+      "Superior Incompleto",
+      "Superior Completo",
       "Outro"
     ],
+    escolaridade2: ["1", "2", "3", "4", "5", "6"],
     selectedValueUF: "Selecione o estado em que você reside",
     uf: [
       "Acre",
@@ -107,9 +108,9 @@ export default class Questao01 extends Component {
 
         <ReactNativePickerModule
           pickerRef={e => (this.pickerEscolaridade = e)}
-          value={this.state.selectedValue}
+          value={this.state.selectedEscolaridade}
           title={"Selecione o grau de escolaridade"}
-          items={this.state.data}
+          items={this.state.escolaridade}
           onCancel={() => {
             console.log("Cancelado");
           }}
@@ -422,6 +423,7 @@ export default class Questao01 extends Component {
               {this.buttonReturn()}
               {this.buttonCadastro()}
             </View>
+            <View style={styles.viewFooter}></View>
           </ScrollView>
         </ImageBackground>
       </View>

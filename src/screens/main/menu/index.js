@@ -66,6 +66,7 @@ export default class Menu extends Component {
           {this.thirdButton()}
           {this.fourthButton()}
         </View>
+        <View style={styles.viewFooter} />
       </View>
     );
   }

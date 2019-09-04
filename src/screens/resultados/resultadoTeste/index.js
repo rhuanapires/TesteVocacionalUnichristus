@@ -193,7 +193,7 @@ export default class Resultado extends Component {
       return (
         <ImageBackground
           style={styles.background}
-          resizeMode="contain"
+          resizeMode="stretch"
           source={this.state.background}
         >
           <ScrollView style={styles.ScrollV}>

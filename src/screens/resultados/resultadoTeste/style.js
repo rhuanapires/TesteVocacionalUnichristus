@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet, Dimensions, Platform } from "react-native";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -11,10 +11,10 @@ const styles = StyleSheet.create({
   },
   ScrollV: {
     flex: 1,
-    marginTop: 90
+    marginTop: Platform.OS === "android" ? 70 : 90
   },
   unify: {
-    marginTop: 150,
+    marginTop: 160,
     paddingHorizontal: 20
   },
   subHeader: {
@@ -72,7 +72,14 @@ const styles = StyleSheet.create({
       height: 2,
       width: 3
     },
-    elevation: 10
+    ...Platform.select({
+      android: {
+        textShadowColor: "#00000040",
+        textShadowOffset: { width: 3, height: 2 },
+        textShadowRadius: 20,
+        elevation: 10
+      }
+    })
   },
   textSubtitles: {
     fontSize: 14,
@@ -89,7 +96,14 @@ const styles = StyleSheet.create({
       height: 2,
       width: 3
     },
-    elevation: 10
+    ...Platform.select({
+      android: {
+        textShadowColor: "#00000040",
+        textShadowOffset: { width: 3, height: 2 },
+        textShadowRadius: 20,
+        elevation: 10
+      }
+    })
   },
   subtext: {
     marginHorizontal: 10,
@@ -168,7 +182,7 @@ const styles = StyleSheet.create({
     marginBottom: 30
   },
   footer: {
-    marginBottom: 30
+    marginBottom: Platform.OS === "android" ? 100 : 30
   },
   listaItems: {
     color: "#19BEF2",

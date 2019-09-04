@@ -7,7 +7,8 @@ import {
   TextInput,
   TouchableOpacity,
   ImageBackground,
-  StatusBar
+  StatusBar,
+  Platform
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 import firebase from "react-native-firebase";
@@ -132,7 +133,10 @@ export default class Login extends Component {
         source={background}
       >
         <View style={style.container}>
-          <StatusBar barStyle="light-content" />
+          <StatusBar
+            barStyle="light-content"
+            hidden={Platform.OS === "android" ? true : false}
+          />
           <View style={style.main}>
             <Image source={logo} style={style.image} />
             {this.renderLogin()}
